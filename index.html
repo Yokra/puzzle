@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Puzzle</title>
+
+    <style>
+
+        body{
+            display: grid;
+            grid-template-columns: auto auto auto ;
+            grid-template-rows:auto auto;
+
+        }
+            form{
+                grid-column: 1/4;
+                grid-row: 1/2;
+                padding-top: 50px;
+            }
+
+            img{
+                grid-column: 1/2;
+                grid-row: 2/3;
+                padding-top: 30px;
+            }
+
+        #container{
+            padding-top: 30px;
+            grid-column: 2/3;
+            grid-row: 2/3;
+            display:grid;
+
+
+
+        }
+        .dropzone{
+            outline : 1px solid black;
+
+        }
+
+    </style>
+</head>
+
+<body>
+<form>
+    <input type="text"  value="https://thesoullaundry.com/wp-content/uploads/2017/11/Rabbit_Bird_Naoto_Hattori_800-768x768.png">
+    <input type="number"  value="3">
+    <input type="number"  value="3">
+    <input type="text"  value="start puzzling">
+</form>
+
+<img src="" alt="">
+<div id="container"></div>
+
+
+
+
+
+
+
+</body>
+<script>
+
+    "use strict";
+
+    const imgPath = "smth.jpg";
+    document.addEventListener("DOMContentLoaded", loadTheImage);
+
+
+    function loadTheImage(){
+        console.log(loadTheImage);
+    document.querySelector("img").src = imgPath;
+        let height = document.querySelector("img").naturalHeight;
+        let width = document.querySelector("img").naturalWidth;
+        console.log(height);
+        console.log(width);
+    }
+
+    //slicing the container in drop zones
+
+    const numOfXPieces = 3;
+    const numOfYPieces = 3;
+    const container_width = 413;
+    const container_height = 538;
+
+    document.querySelector("#container").style.gridTemplateColumns= `repeat(${numOfXPieces}, 1fr)`;
+    document.querySelector("#container").style.width = container_width + "px";
+
+
+    for (let y = 0; y < numOfYPieces; y++) {
+        for (let x = 0; x < numOfXPieces; x++) {
+
+            let dropzone = document.createElement("div");
+
+
+            dropzone.style.height = (container_height / numOfYPieces) + "px";
+            dropzone.style.width = (container_width / numOfXPieces) + "px";
+
+            dropzone.textContent =  `${x}${y}`;
+            dropzone.classList.add("dropzone");
+
+            document.querySelector("#container").appendChild(dropzone);
+
+
+        }
+
+    }
+
+
+</script>
+</html>
