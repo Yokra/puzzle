@@ -41,6 +41,13 @@
 
         }
 
+        .pieces{
+            grid-column: 3/4;
+            grid-row: 2/3;
+            padding-top: 30px;
+
+        }
+
     </style>
 </head>
 
@@ -49,17 +56,13 @@
     <input type="text"  value="https://thesoullaundry.com/wp-content/uploads/2017/11/Rabbit_Bird_Naoto_Hattori_800-768x768.png">
     <input type="number"  value="3">
     <input type="number"  value="3">
-    <input type="text"  value="start puzzling">
+    <button> start puzzling </button>
 </form>
 
 <img src="" alt="">
 <div id="container"></div>
 
-
-
-
-
-
+<p class="pieces"></p>
 
 </body>
 <script>
@@ -89,25 +92,50 @@
     document.querySelector("#container").style.gridTemplateColumns= `repeat(${numOfXPieces}, 1fr)`;
     document.querySelector("#container").style.width = container_width + "px";
 
-
     for (let y = 0; y < numOfYPieces; y++) {
         for (let x = 0; x < numOfXPieces; x++) {
 
             let dropzone = document.createElement("div");
+             console.log(dropzone);
 
-
-            dropzone.style.height = (container_height / numOfYPieces) + "px";
+             dropzone.style.height = (container_height / numOfYPieces) + "px";
             dropzone.style.width = (container_width / numOfXPieces) + "px";
 
             dropzone.textContent =  `${x}${y}`;
             dropzone.classList.add("dropzone");
 
             document.querySelector("#container").appendChild(dropzone);
-
-
         }
-
     }
+
+    // slicing the image into a puzzle pieces
+
+
+    for (let y = 0; y < numOfYPieces; y++) {
+        for (let x = 0; x < numOfXPieces; x++) {
+
+            let pieces = document.createElement("pieces");
+            console.log(pieces);
+
+            pieces.textContent =  `${x}${y}`;
+            pieces.classList.add("pieces");
+
+            //pieces.style.height = (height / numOfYPieces) + "px";
+            //pieces.style.width = (width / numOfXPieces) + "px";
+
+            document.querySelector("body").appendChild(pieces);
+        }
+    }
+
+    document.querySelectorAll("piece").forEach(eachPiece => {
+
+        eachPiece.style.right = `${Math.random()*500 + 250}px`;
+
+
+
+    });
+
+
 
 
 </script>
